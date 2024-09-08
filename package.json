@@ -1,12 +1,13 @@
 {
 	"name": "hivedocs",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "next start",
-		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+    "postinstall": "prisma generate"
 	},
 	"dependencies": {
 		"@nextui-org/button": "2.0.37",
@@ -37,6 +38,7 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
+		"@next/eslint-plugin-next": "^14.2.8",
 		"@tanstack/eslint-plugin-query": "^5.53.0",
 		"@types/node": "20.5.7",
 		"@types/react": "18.3.3",
@@ -55,6 +57,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-unused-imports": "^3.2.0",
 		"postcss": "8.4.38",
+		"prettier": "3.3.3",
 		"prisma": "^5.19.1",
 		"tailwind-variants": "0.1.20",
 		"tailwindcss": "3.4.3",

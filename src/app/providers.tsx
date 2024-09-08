@@ -12,7 +12,7 @@ export interface ProvidersProps {
   themeProps?: ThemeProviderProps;
 }
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
