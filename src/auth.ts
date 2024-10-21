@@ -11,5 +11,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Google,
     Osu
   ],
-  debug: true
+  // debug: true
 });
