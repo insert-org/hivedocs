@@ -1,45 +1,52 @@
-"use client"
+import { auth } from "@/auth"
+import { AccountDropdown } from "@/components/account-dropdown"
+import { Button } from "@nextui-org/button"
+import { Input, Link } from "@nextui-org/react"
+import { Bell, Home, Search } from "lucide-react"
+import Image from "next/image"
 
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User, Button } from "@nextui-org/react";
-import { Separator } from "@radix-ui/react-dropdown-menu";
-import { SeparatorHorizontal } from "lucide-react";
-import { signOut, useSession } from "next-auth/react"
-
-export const Header = () => {
-  const { data: session } = useSession()
+export const Header = async () => {
+  const session = await auth()
 
   return (
-    <div className="flex flex-row justify-between px-4 py-2">
-      <h1>Header</h1>
-      {
-        session ? (
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                src={session.user?.image || "https://i.pravatar.cc/150?u=a042581f4e29026704d"}
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile">
-                <p className="font-semibold">{session.user?.name}</p>
-              </DropdownItem>
-              <DropdownItem key="settings" href="/settings" showDivider>
-                Settings
-              </DropdownItem>
-              <DropdownItem key="logout" color="danger" onClick={() => signOut()}>
-                Log Out
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        ) : (
-          <Button>
-            Sign In
-          </Button>
-        )
-      }
+    <div className="flex flex-row justify-between">
+      <Image src="/logo2.png" alt="logo" width={200} height={100} />
+      <div className="flex flex-row gap-4 w-[50%]">
+        <Button
+          className="rounded-full bg-black"
+          isIconOnly
+        >
+          <Home size={24} color="white" />
+        </Button>
+        <Input
+          className="rounded-full border-[#ff7f00] border-2"
+          classNames={{
+            inputWrapper: "rounded-full"
+          }}
+          placeholder="O que você está procurando?"
+          startContent={<Search size={24} />}
+        />
+      </div>
+      <div className="flex flex-row gap-4">
+        <Button
+          className="rounded-full bg-black"
+          isIconOnly
+        >
+          <Bell size={24} color="white" />
+        </Button>
+        {
+          session?.user ? (
+            <AccountDropdown />
+          ) : (
+            <Button
+              as={Link}
+              href="/login"
+            >
+              Entrar
+            </Button>
+          )
+        }
+      </div>
     </div>
   )
 }

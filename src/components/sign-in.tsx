@@ -16,6 +16,27 @@ export function SignIn({
   )
 }
 
+export function SignInCredentials() {
+  return (
+    <form
+      action={async (formData) => {
+        "use server"
+        await signIn("credentials", formData)
+      }}
+    >
+      <label>
+        Email
+        <input name="email" type="email" />
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" />
+      </label>
+      <Button type="submit">Sign In with credentials</Button>
+    </form>
+  )
+}
+
 export function SignOut() {
   return (
     <form

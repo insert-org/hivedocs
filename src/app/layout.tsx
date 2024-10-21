@@ -21,10 +21,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body>
+      <body
+        className={clsx(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <Providers>
-          <Header />
-          {children}
+          <header className="">
+
+          </header>
+          <main className="text-foreground bg-background min-h-screen flex flex-col justify-center items-center">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

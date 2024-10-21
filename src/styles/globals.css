@@ -71,15 +71,3 @@
     --box-secondary: 240, 4%, 16%;
   }
 }
-
-@layer base {
-  #tasks::-webkit-scrollbar {
-    display: none;
-  }
-
-  #tasks {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overflow-y: scroll;
-  }
-}
