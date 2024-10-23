@@ -71,3 +71,15 @@
     --box-secondary: 240, 4%, 16%;
   }
 }
+
+@layer base {
+  #articles::-webkit-scrollbar {
+    display: none;
+  }
+
+  #articles {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+  }
+}
