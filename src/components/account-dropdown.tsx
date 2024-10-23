@@ -8,9 +8,11 @@ import {
 } from "@nextui-org/dropdown";
 import { Avatar } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const AccountDropdown = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const logout = async () => {
     await signOut();
@@ -29,6 +31,7 @@ export const AccountDropdown = () => {
         </DropdownItem>
         <DropdownItem
           key="settings"
+          onClick={() => router.push("/settings")}
         >
           Configurações
         </DropdownItem>
