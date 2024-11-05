@@ -10,11 +10,13 @@ import Creatable from 'react-select/creatable';
 import { createArticle, getAuthors } from "./actions";
 import { Button } from "@nextui-org/button";
 import { z } from "zod";
+import { useToast } from "@/hooks/use-toast";
 
 const animatedComponents = makeAnimated();
 
 export const NewArticleForm = () => {
   const { data: session } = useSession()
+  const { toast } = useToast()
 
   const {
     register,
@@ -54,7 +56,12 @@ export const NewArticleForm = () => {
     const newArticle = await createArticle(values)
 
     if (!newArticle.author.approved) {
-      alert("Artigo criado com sucesso, aguarde a aprovação do autor")
+      toast({
+        title: "Artigo criado com sucesso.",
+        description: "Autor aguardando a aprovação.",
+        variant: "destructive",
+        className: "bg-green-500 text-white",
+      })
     }
   }
 
