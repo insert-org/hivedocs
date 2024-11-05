@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "postinstall": "prisma generate"
@@ -11,7 +11,10 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.2",
     "@auth/unstorage-adapter": "^2.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
+    "@mui/material": "^6.1.6",
     "@nextui-org/button": "^2.0.37",
     "@nextui-org/card": "^2.0.33",
     "@nextui-org/dropdown": "^2.1.29",
@@ -29,6 +32,7 @@
     "@simplewebauthn/server": "^9.0.3",
     "@tanstack/react-query": "^5.55.1",
     "@vercel/kv": "^1.0.1",
+    "bson": "^6.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^11.5.4",
@@ -39,6 +43,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
+    "react-icons": "^5.3.0",
+    "react-select": "^5.8.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "unstorage": "^1.10.1",
@@ -51,6 +57,7 @@
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.29",
     "prisma": "^5.21.1",
+    "prisma-generator-fake-data": "^0.14.3",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   },

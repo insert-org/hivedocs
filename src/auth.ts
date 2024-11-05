@@ -11,5 +11,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Google,
     Osu
   ],
-  // debug: true
+  callbacks: {
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id,
+      },
+    }),
+  },
 });

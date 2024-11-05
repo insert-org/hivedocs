@@ -1,20 +1,26 @@
+"use client"
+
 import { auth } from "@/auth"
 import { AccountDropdown } from "@/components/account-dropdown"
 import { Button } from "@nextui-org/button"
 import { Input, Link } from "@nextui-org/react"
-import { Bell, Home, Search } from "lucide-react"
+import { Bell, Home, Plus, Search } from "lucide-react"
+import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
-export const Header = async () => {
-  const session = await auth()
+export const Header = () => {
+  const { data: session } = useSession()
+  const router = useRouter()
 
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between w-full">
       <Image src="/logo2.png" alt="logo" width={200} height={100} />
       <div className="flex flex-row gap-4 w-[50%]">
         <Button
           className="rounded-full bg-black"
           isIconOnly
+          onClick={() => router.push("/")}
         >
           <Home size={24} color="white" />
         </Button>
@@ -28,6 +34,13 @@ export const Header = async () => {
         />
       </div>
       <div className="flex flex-row gap-4">
+        <Button
+          className="rounded-full bg-black"
+          isIconOnly
+          onClick={() => router.push("/article/new")}
+        >
+          <Plus size={24} color="white" />
+        </Button>
         <Button
           className="rounded-full bg-black"
           isIconOnly

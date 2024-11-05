@@ -28,9 +28,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <Providers>
-          <header className="">
-
-          </header>
           <main className="text-foreground bg-background min-h-screen flex flex-col justify-center items-center">
             {children}
           </main>

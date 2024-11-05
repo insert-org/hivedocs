@@ -24,7 +24,7 @@ export const AccountDropdown = () => {
         <Avatar isBordered as="button" className="transition-transform" src={session?.user?.image || ""} />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
-        <DropdownItem key="profile">
+        <DropdownItem key="profile" textValue="User">
           <p className="font-semibold">
             {session?.user?.email || session?.user?.name}
           </p>
