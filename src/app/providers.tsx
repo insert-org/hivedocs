@@ -1,11 +1,13 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
 import { NextUIProvider } from "@nextui-org/system";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster"
+import dynamic from "next/dynamic";
+
+const SessionProvider = dynamic(() => import("next-auth/react").then((mod) => mod.SessionProvider), { ssr: false });
 
 export interface ProvidersProps {
   themeProps?: ThemeProviderProps;

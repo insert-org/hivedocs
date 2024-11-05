@@ -3,7 +3,7 @@
 import { Settings, settings } from "@/utils/settings";
 import { Button } from "@nextui-org/button";
 import { ArrowLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 import { useState } from "react";
 
 export default function SettingsPage() {

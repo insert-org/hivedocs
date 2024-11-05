@@ -7,7 +7,7 @@ import { Input, Link } from "@nextui-org/react"
 import { Bell, Home, Plus, Search } from "lucide-react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'nextjs-toploader/app';
 
 export const Header = () => {
   const { data: session } = useSession()

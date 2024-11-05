@@ -8,7 +8,7 @@ import {
 } from "@nextui-org/dropdown";
 import { Avatar } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 
 export const AccountDropdown = () => {
   const { data: session } = useSession();

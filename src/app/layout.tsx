@@ -2,12 +2,10 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { ReactNode } from "react";
-
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-
 import { Providers } from "./providers";
-import { Header } from "@/components/header";
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = {
   title: {
@@ -28,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <Providers>
+          <NextTopLoader color="#ff7f00" />
           <main className="text-foreground bg-background min-h-screen flex flex-col justify-center items-center">
             {children}
           </main>

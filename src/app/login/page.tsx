@@ -8,7 +8,7 @@ import { LoginSchema } from "@/schemas/login";
 import { Input } from "@nextui-org/input";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 
 export default function Login() {
   const { status } = useSession()
