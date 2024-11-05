@@ -11,12 +11,15 @@ import { createArticle, getAuthors } from "./actions";
 import { Button } from "@nextui-org/button";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { Loader } from "@/components/loader";
+import { useState } from "react";
 
 const animatedComponents = makeAnimated();
 
 export const NewArticleForm = () => {
   const { data: session } = useSession()
   const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const {
     register,
@@ -26,6 +29,7 @@ export const NewArticleForm = () => {
     reset,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(ArticleSchema),
     defaultValues: {
       title: "",
       authorName: "",
@@ -36,7 +40,7 @@ export const NewArticleForm = () => {
 
   const values = watch()
 
-  const { data, status } = useQuery({
+  const { data } = useQuery({
     queryKey: ["authors"],
     queryFn: () => getAuthors(),
   })
@@ -53,15 +57,30 @@ export const NewArticleForm = () => {
   )
 
   const onSubmit = async () => {
-    const newArticle = await createArticle(values)
+    setIsSubmitting(true)
+    try {
+      const newArticle = await createArticle(values)
 
-    if (!newArticle.author.approved) {
-      toast({
-        title: "Artigo criado com sucesso.",
-        description: "Autor aguardando a aprovação.",
-        variant: "destructive",
-        className: "bg-green-500 text-white",
-      })
+      if (!newArticle.author.approved) {
+        toast({
+          title: "Artigo criado com sucesso.",
+          description: "Autor aguardando a aprovação.",
+          variant: "destructive",
+          className: "bg-yellow-500 text-white",
+        })
+      } else {
+        toast({
+          title: "Artigo criado com sucesso.",
+          description: "Aguardando a aprovação.",
+          variant: "destructive",
+          className: "bg-yellow-500 text-white",
+        })
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsSubmitting(false)
+      reset()
     }
   }
 
@@ -69,6 +88,7 @@ export const NewArticleForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="w-4/12">
       <div className="flex flex-col gap-2">
         <Input type="text" label="Título" {...register("title")} />
+        {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
         <Creatable
           options={options}
           components={animatedComponents}
@@ -84,12 +104,16 @@ export const NewArticleForm = () => {
             control: base => ({ ...base, backgroundColor: "#f4f4f5", border: "none" })
           }}
         />
+        {errors.authorName && <p className="text-red-500 text-sm">{errors.authorName.message}</p>}
         <Input type="number" label="Ano" {...register("year", { valueAsNumber: true })} />
         <Textarea
           label="Resumo"
           {...register("resume")}
         />
-        <Button type="submit">Criar artigo</Button>
+        {errors.resume && <p className="text-red-500 text-sm">{errors.resume.message}</p>}
+        <Button type="submit">
+          {isSubmitting ? <Loader /> : "Enviar"}
+        </Button>
       </div>
     </form>
   )

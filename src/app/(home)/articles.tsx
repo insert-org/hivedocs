@@ -4,6 +4,7 @@ import { Avatar, Image } from "@nextui-org/react"
 import { ArticleWithRelations } from "@/types/article"
 import { useQuery } from "@tanstack/react-query"
 import { getArticles } from "./actions"
+import { Loader } from "@/components/loader"
 
 export const Articles = () => {
   const { data, status, error } = useQuery({
@@ -11,7 +12,7 @@ export const Articles = () => {
     queryFn: () => getArticles(),
   })
 
-  if (status === "pending") return <p>Carregando...</p>
+  if (status === "pending") return <Loader />
   if (error) return <p>{error.message}</p>
 
   return (

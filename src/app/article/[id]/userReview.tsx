@@ -13,6 +13,7 @@ import { ReviewSchema } from "@/schemas/review";
 import { z } from "zod";
 import { Edit, Trash } from "lucide-react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/modal";
+import { Loader } from "@/components/loader";
 
 type Props = {
   articleId: string
@@ -22,6 +23,8 @@ export const UserReview = ({ articleId }: Props) => {
   const { data: session } = useSession()
   const [isEditing, setIsEditing] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const userId = session?.user?.id || ""
 
@@ -42,7 +45,7 @@ export const UserReview = ({ articleId }: Props) => {
 
   const values = watch()
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["review"],
     queryFn: () => getUserReview(articleId, userId),
     enabled: !!userId,
@@ -55,17 +58,31 @@ export const UserReview = ({ articleId }: Props) => {
   )
 
   const onSubmit = async (values: z.infer<typeof ReviewSchema>) => {
-    await upsertReview(data?.id, articleId, userId, values)
-    setIsEditing(false)
-    refetch()
+    setIsSubmitting(true)
+    try {
+      await upsertReview(data?.id, articleId, userId, values)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsEditing(false)
+      refetch()
+      setIsSubmitting(false)
+    }
   }
 
   const onDelete = async (onClose: () => void) => {
     if (!data) return
-    await deleteReview(data?.id)
-    refetch()
-    reset()
-    onClose()
+    setIsDeleting(true)
+    try {
+      await deleteReview(data?.id)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      refetch()
+      reset()
+      onClose()
+      setIsDeleting(false)
+    }
   }
 
   const setData = () => {
@@ -80,6 +97,8 @@ export const UserReview = ({ articleId }: Props) => {
   useEffect(() => {
     setData()
   }, [data])
+
+  if (isLoading) return <Loader />
 
   return (
     <>
@@ -96,7 +115,7 @@ export const UserReview = ({ articleId }: Props) => {
                   Cancelar
                 </Button>
                 <Button color="danger" onPress={() => onDelete(onClose)}>
-                  Excluir
+                  {isDeleting ? <Loader /> : "Excluir"}
                 </Button>
               </ModalFooter>
             </>
@@ -134,16 +153,20 @@ export const UserReview = ({ articleId }: Props) => {
                 />
               </div>
               <div className="flex flex-row gap-2">
-                <Button
-                  type="button"
-                  onClick={() => {
-                    setIsEditing(false)
-                    setData()
-                  }}
-                  className="bg-[#ff7f00] text-white">
-                  Descartar
+                {isEditing && (
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false)
+                      setData()
+                    }}
+                    className="bg-[#ff7f00] text-white">
+                    Descartar
+                  </Button>
+                )}
+                <Button type="submit" className="bg-[#ff7f00] text-white">
+                  {isSubmitting ? <Loader /> : "Salvar"}
                 </Button>
-                <Button type="submit" className="bg-[#ff7f00] text-white">Salvar</Button>
               </div>
             </div>
           </form>

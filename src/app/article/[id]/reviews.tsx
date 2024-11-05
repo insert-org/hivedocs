@@ -5,6 +5,7 @@ import { getReviews } from "./actions"
 import { Avatar } from "@nextui-org/react"
 import { siteConfig } from "@/config/site"
 import { Rating } from "@mui/material"
+import { Loader } from "@/components/loader"
 
 type Props = {
   articleId: string
@@ -17,7 +18,7 @@ export const Reviews = ({ articleId, userId }: Props) => {
     queryFn: () => getReviews(articleId, userId),
   })
 
-  if (status === "pending") return <p>Carregando...</p>
+  if (status === "pending") return <Loader />
   if (status === "error") return <p>Artigo não encontrado</p>
 
   return (

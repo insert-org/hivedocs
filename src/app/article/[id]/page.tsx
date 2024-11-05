@@ -6,12 +6,13 @@ import { Article } from "./article"
 import { Reviews } from "./reviews"
 import { UserReview } from "./userReview"
 import { useSession } from "next-auth/react"
+import { Loader } from "@/components/loader"
 
 export default function () {
   const { id }: { id: string } = useParams()
   const { data: session, status } = useSession()
 
-  if (status === "loading") return <p>Carregando...</p>
+  if (status === "loading") return <Loader />
 
   return (
     <div className="flex flex-col items-center min-h-screen w-screen p-16">

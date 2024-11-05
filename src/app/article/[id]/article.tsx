@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getArticle } from "./actions"
 import Rating from '@mui/material/Rating';
 import { siteConfig } from "@/config/site";
+import { Loader } from "@/components/loader";
 
 type Props = {
   articleId: string
@@ -18,7 +19,7 @@ export const Article = ({ articleId }: Props) => {
 
   const media = reviews?.length ? (reviews?.reduce((acc, review) => acc + review.rating, 0) || 1) / (reviews?.length || 1) : 0
 
-  if (status === "pending") return <p>Carregando...</p>
+  if (status === "pending") return <Loader />
   if (status === "error") return <p>Artigo não encontrado</p>
 
   return (
