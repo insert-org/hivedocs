@@ -2,6 +2,7 @@ import { Image, Link } from "@nextui-org/react"
 import { useQuery } from "@tanstack/react-query"
 import { getArticle } from "./actions"
 import Rating from '@mui/material/Rating';
+import { siteConfig } from "@/config/site";
 
 type Props = {
   articleId: string
@@ -23,7 +24,7 @@ export const Article = ({ articleId }: Props) => {
   return (
     <div className="flex flex-row gap-4">
       <div className="flex flex-col items-center gap-2 w-[20%]">
-        <Image src="/microalgas.png" alt="microalgas" height={300} />
+        <Image src={data?.image || siteConfig.emptyImage} alt="Foto" height={300} />
         <Rating
           precision={0.25}
           value={media}

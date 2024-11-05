@@ -36,7 +36,7 @@ export default function Index() {
             <Loader2 className="animate-spin" size={64} />
           ) : (
 
-            <div className="flex flex-row gap-4 h-full">
+            <div className="flex flex-row gap-4 h-full w-full">
               <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%] h-full overflow-scroll">
                 <div className="flex flex-row justify-between rounded-full border-[#ff7f00] border-2 p-1">
                   <Search />

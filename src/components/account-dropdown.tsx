@@ -29,6 +29,16 @@ export const AccountDropdown = () => {
             {session?.user?.email || session?.user?.name}
           </p>
         </DropdownItem>
+        {
+          session?.user?.role === "Admin" ? (
+            <DropdownItem
+              key="admin"
+              onClick={() => router.push("/admin")}
+            >
+              Painel de Administração
+            </DropdownItem>
+          ) : <></>
+        }
         <DropdownItem
           key="settings"
           onClick={() => router.push("/settings")}

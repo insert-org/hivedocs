@@ -4,6 +4,15 @@ import Osu from "next-auth/providers/osu"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "./lib/prisma";
+import { User as PrismaUser } from "@prisma/client";
+
+declare module "@auth/core/types" {
+  interface Session {
+    user: PrismaUser & DefaultSession["user"];
+  }
+
+  interface User extends PrismaUser { }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -18,6 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       user: {
         ...session.user,
         id: user.id,
+        role: user.role,
       },
     }),
   },
