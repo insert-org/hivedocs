@@ -3,10 +3,9 @@
 import { auth } from "@/auth"
 import { AccountDropdown } from "@/components/account-dropdown"
 import { Button } from "@nextui-org/button"
-import { Input, Link } from "@nextui-org/react"
+import { Image, Input, Link } from "@nextui-org/react"
 import { Bell, Home, Plus, Search } from "lucide-react"
 import { useSession } from "next-auth/react"
-import Image from "next/image"
 import { useRouter } from 'nextjs-toploader/app';
 
 export const Header = () => {
@@ -14,13 +13,13 @@ export const Header = () => {
   const router = useRouter()
 
   return (
-    <div className="flex flex-row justify-between w-full">
-      <Image src="/logo2.png" alt="logo" width={200} height={100} />
+    <div className="flex flex-row justify-between items-center w-full">
+      <Image src="/logo2.png" alt="logo" className="h-16 cursor-pointer" onClick={() => router.push("/")} />
       <div className="flex flex-row gap-4 w-[50%]">
         <Button
           className="rounded-full bg-black"
           isIconOnly
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/home")}
         >
           <Home size={24} color="white" />
         </Button>

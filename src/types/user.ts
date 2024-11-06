@@ -5,6 +5,7 @@ export const EmptyUser: User = {
   email: "",
   emailVerified: null,
   image: "",
+  imageId: "",
   name: "",
   password: "",
   role: "User",

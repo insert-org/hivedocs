@@ -20,7 +20,7 @@ export default function () {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
-  if (status === "authenticated") router.push("/")
+  if (status === "authenticated") router.push("/home")
 
   const {
     register,
@@ -55,7 +55,7 @@ export default function () {
         className: "bg-green-500 text-white",
       })
 
-      router.push("/")
+      router.push("/home")
     } else {
       toast({
         title: "Erro.",

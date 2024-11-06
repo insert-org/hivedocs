@@ -1,5 +1,6 @@
 import { Authors } from "@/app/admin/authors"
 import { Name } from "@/components/settings/name";
+import { Photo } from "@/components/settings/photo";
 import { ReactNode } from "react"
 
 type Setting = {
@@ -20,6 +21,10 @@ export const settings: Settings[] = [
         label: "Nome",
         component: Name
       },
+      {
+        label: "Foto",
+        component: Photo
+      }
     ]
   },
   {

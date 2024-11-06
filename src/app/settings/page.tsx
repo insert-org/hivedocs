@@ -1,5 +1,6 @@
 "use client"
 
+import { Header } from "@/components/header";
 import { Settings, settings } from "@/utils/settings";
 import { Button } from "@nextui-org/button";
 import { ArrowLeft } from "lucide-react";
@@ -13,12 +14,8 @@ export default function SettingsPage() {
   return (
     <div className="flex flex-col justify-between items-center h-screen w-screen p-16">
       <div className="bg-[#ff7f00] w-full h-[16px]"></div>
-      <div className="flex flex-col items-center gap-16 w-full h-full py-8 relative">
-        <div className="flex w-full absolute top-2 left-2">
-          <Button onClick={() => router.push("/")}>
-            <ArrowLeft size={24} />
-          </Button>
-        </div>
+      <div className="flex flex-col items-center gap-16 w-full h-full py-8">
+        <Header />
         <div className="border-[#ff7f00] border-2 px-64 rounded-full py-2">
           <p className="font-bold text-3xl">Configurações</p>
         </div>

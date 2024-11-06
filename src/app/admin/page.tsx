@@ -16,7 +16,7 @@ export default function () {
 
   if (status !== "loading") {
     if (status === "unauthenticated" || (session?.user.role && session?.user.role !== "Admin")) {
-      router.push("/")
+      router.push("/home")
     }
   }
 

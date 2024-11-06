@@ -62,6 +62,7 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
+  imageId       String?
   role          Role      @default(User)
   //
   createdAt     DateTime  @default(now())
@@ -78,6 +79,7 @@ model Author {
   name      String    @unique
   resume    String    @default("")
   image     String?
+  imageId   String?
   //
   approved  Boolean   @default(false)
   //
@@ -109,7 +111,7 @@ model Article {
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   //
-  content   String
+  content   String   @db.String
   rating    Float
   //
   createdAt DateTime @default(now())

@@ -22,7 +22,7 @@ type Props = {
 export const UserReview = ({ articleId }: Props) => {
   const { data: session } = useSession()
   const [isEditing, setIsEditing] = useState(false)
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
@@ -70,7 +70,7 @@ export const UserReview = ({ articleId }: Props) => {
     }
   }
 
-  const onDelete = async (onClose: () => void) => {
+  const onDelete = async () => {
     if (!data) return
     setIsDeleting(true)
     try {
@@ -114,7 +114,7 @@ export const UserReview = ({ articleId }: Props) => {
                 <Button color="primary" variant="light" onPress={onClose}>
                   Cancelar
                 </Button>
-                <Button color="danger" onPress={() => onDelete(onClose)}>
+                <Button color="danger" onPress={() => onDelete()}>
                   {isDeleting ? <Loader /> : "Excluir"}
                 </Button>
               </ModalFooter>
@@ -146,11 +146,14 @@ export const UserReview = ({ articleId }: Props) => {
                     }
                   />
                 </div>
-                <Textarea
-                  label="Avaliação (Opcional)"
-                  placeholder="Escreva sua avaliação"
-                  {...register("content")}
-                />
+                <div className="flex flex-col gap-2 w-full">
+                  <Textarea
+                    label="Avaliação (Opcional)"
+                    placeholder="Escreva sua avaliação"
+                    {...register("content")}
+                  />
+                  {errors.content && <p className="text-red-500 text-sm">{errors.content.message}</p>}
+                </div>
               </div>
               <div className="flex flex-row gap-2">
                 {isEditing && (
@@ -176,7 +179,7 @@ export const UserReview = ({ articleId }: Props) => {
             <div className="w-full">
               <div className="flex flex-row items-center gap-2">
                 <Avatar src={data.user.image || undefined} className="w-14 h-14" />
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-full">
                   <div className="flex flex-row items-center gap-2">
                     <p className={`font-bold text-xl`}>{data.user.name}</p>
                     <Rating
@@ -194,7 +197,10 @@ export const UserReview = ({ articleId }: Props) => {
                       <Trash />
                     </Button>
                   </div>
-                  <p>{data.content}</p>
+                  <Textarea
+                    value={data.content}
+                    readOnly
+                  />
                 </div>
               </div>
             </div>

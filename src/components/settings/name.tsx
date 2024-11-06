@@ -12,7 +12,7 @@ import { Loader } from "../loader";
 import { useRouter } from "nextjs-toploader/app";
 
 export const Name = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { data: session, update } = useSession();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -37,11 +37,11 @@ export const Name = () => {
     }
   }, [session]);
 
-  const onSubmit = async (data: z.infer<typeof NameSchema>, onClose: () => void) => {
+  const onSubmit = async (data: z.infer<typeof NameSchema>) => {
     if (!session) return;
     setIsSubmitting(true);
     try {
-      await changeName(data.name, session?.user.id)
+      await changeName(session.user.id, data.name)
       update({ name: data.name })
     } catch (error) {
       console.error(error);
@@ -57,7 +57,7 @@ export const Name = () => {
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
-            <form onSubmit={handleSubmit((values) => onSubmit(values, onClose))}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <ModalHeader className="flex flex-col gap-1">Mudar nome de exibição</ModalHeader>
               <ModalBody>
                 <Input

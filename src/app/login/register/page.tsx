@@ -21,7 +21,7 @@ export default function () {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
-  if (status === "authenticated") router.push("/")
+  if (status === "authenticated") router.push("/home")
 
   const {
     register,
