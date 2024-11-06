@@ -32,7 +32,7 @@ export default function () {
               <div className="border-[#ff7f00] border-2 px-64 rounded-full py-2">
                 <p className="font-bold text-3xl">Painel de Administração</p>
               </div>
-              <div className="flex flex-row gap-2 w-4/12 justify-center">
+              <div className="flex flex-row gap-2 w-10/12 justify-center">
                 <div className="flex flex-col items-center gap-4 w-4/12">
                   {adminSettings.map((setting) => (
                     <Button
@@ -45,7 +45,7 @@ export default function () {
                   ))}
                 </div>
                 <div className="h-full w-[1px] bg-black"></div>
-                <div className="flex flex-col items-center gap-4 w-8/12">
+                <div className="flex flex-col items-center gap-4 w-full">
                   {<selected.component />}
                 </div>
               </div>

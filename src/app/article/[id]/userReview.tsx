@@ -128,7 +128,7 @@ export const UserReview = ({ articleId }: Props) => {
             <div className="flex flex-col items-end gap-2 bg-gray-300 p-4 rounded-2xl">
               <div className="flex flex-row items-center gap-2  w-full">
                 <div className="flex flex-col items-center gap-2">
-                  <Avatar src={session?.user?.image || siteConfig.emptyImage} className="w-14 h-14" />
+                  <Avatar src={session?.user?.image || undefined} className="w-14 h-14" />
                   <Rating
                     precision={0.5}
                     value={values.rating}
@@ -175,7 +175,7 @@ export const UserReview = ({ articleId }: Props) => {
             <p className="font-bold text-xl">Sua avaliação</p>
             <div className="w-full">
               <div className="flex flex-row items-center gap-2">
-                <Avatar src={data.user.image || siteConfig.emptyImage} className="w-14 h-14" />
+                <Avatar src={data.user.image || undefined} className="w-14 h-14" />
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-row items-center gap-2">
                     <p className={`font-bold text-xl`}>{data.user.name}</p>

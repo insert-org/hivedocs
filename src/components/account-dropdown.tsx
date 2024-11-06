@@ -26,7 +26,7 @@ export const AccountDropdown = () => {
       <DropdownMenu aria-label="Profile Actions" variant="flat">
         <DropdownItem key="profile" textValue="User">
           <p className="font-semibold">
-            {session?.user?.email || session?.user?.name}
+            {session?.user?.name}
           </p>
         </DropdownItem>
         {

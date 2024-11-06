@@ -37,13 +37,9 @@ export default function SettingsPage() {
           <div className="h-full w-[1px] bg-black"></div>
           <div className="flex flex-col items-center gap-4 w-8/12">
             {selected.settings.map((setting) => (
-              <Button
-                key={setting.label}
-                onClick={() => router.push(setting.href)}
-                className="w-full"
-              >
-                {setting.label}
-              </Button>
+              <div className="w-full" key={setting.label}>
+                {setting.component()}
+              </div>
             ))}
           </div>
         </div>

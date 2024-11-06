@@ -27,6 +27,9 @@ export const getReviews = async (articleId: string, userId: string | undefined) 
     },
     include: {
       user: true
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   })
 

@@ -26,7 +26,7 @@ export const Reviews = ({ articleId, userId }: Props) => {
       {
         data?.map((review, index) => (
           <div key={index} className="flex flex-row items-center gap-2">
-            <Avatar src={review.user.image || siteConfig.emptyImage} className="w-14 h-14" />
+            <Avatar src={review.user.image || undefined} className="w-14 h-14" />
             <div className="flex flex-col gap-2">
               <div className="flex flex-row items-center gap-2">
                 <p className={`font-bold text-xl`}>{review?.user.name}</p>

@@ -1,6 +1,7 @@
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 generator client {
@@ -58,6 +59,7 @@ model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
+  password      String?
   emailVerified DateTime?
   image         String?
   role          Role      @default(User)
@@ -113,7 +115,7 @@ model Review {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   //
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @db.ObjectId
   //
   article   Article  @relation(fields: [articleId], references: [id])
