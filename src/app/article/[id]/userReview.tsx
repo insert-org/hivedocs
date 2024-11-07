@@ -197,10 +197,14 @@ export const UserReview = ({ articleId }: Props) => {
                       <Trash />
                     </Button>
                   </div>
-                  <Textarea
-                    value={data.content}
-                    readOnly
-                  />
+                  {
+                    data.content && (
+                      <Textarea
+                        value={data.content}
+                        readOnly
+                      />
+                    )
+                  }
                 </div>
               </div>
             </div>

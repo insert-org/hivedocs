@@ -105,10 +105,14 @@ export const Reviews = ({ articleId, userId }: Props) => {
                     )
                   }
                 </div>
-                <Textarea
-                  value={review.content}
-                  readOnly
-                />
+                {
+                  review.content && (
+                    <Textarea
+                      value={review.content}
+                      readOnly
+                    />
+                  )
+                }
               </div>
             </div>
           ))
