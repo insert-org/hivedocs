@@ -69,9 +69,9 @@ export default function () {
   }
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-screen py-16">
+    <div className="flex flex-col justify-between items-center h-screen w-screen py-8">
       <div className="bg-[#ff7f00] w-[90%] h-[16px]"></div>
-      <div className="flex flex-col gap-4 w-2/12">
+      <div className="flex flex-col gap-4 w-6/12">
         <div className="flex flex-col justify-center items-center gap-2">
           <Image src="/logo.png" alt="Logo" width="64" height="64" />
           <p className="text-[#ff7f00] text-lg font-extrabold">Entrar no HIVE PROJECT</p>

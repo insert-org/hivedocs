@@ -4,17 +4,26 @@ import { prisma } from "@/lib/prisma"
 import { ObjectId } from 'bson';
 
 export const getArticle = async (id: string) => {
-  const article = await prisma.article.findUnique({
-    where: {
-      id
-    },
-    include: {
-      author: true,
-      reviews: true
-    }
-  })
+  try {
+    const article = await prisma.article.update({
+      where: {
+        id
+      },
+      include: {
+        author: true,
+        reviews: true
+      },
+      data: {
+        views: {
+          increment: 1
+        }
+      }
+    })
 
-  return article
+    return article
+  } catch (error) {
+    return null
+  }
 }
 
 export const getReviews = async (articleId: string, userId: string | undefined) => {

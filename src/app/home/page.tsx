@@ -40,27 +40,7 @@ export default function Index() {
               <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%] h-full overflow-scroll">
                 <div className="flex flex-row justify-between rounded-full border-[#ff7f00] border-2 p-1">
                   <Search />
-                  <div className="flex flex-row items-center gap-2">
-                    <p>Visto recentemente</p>
-                    <List />
-                  </div>
-                </div>
-                <div className="flex flex-row gap-2">
-                  <Button
-                    className="uppercase bg-white border-[#ff7f00] border-2 w-full"
-                  >
-                    Artigos Científicos
-                  </Button>
-                  <Button
-                    className="uppercase bg-white border-[#ff7f00] border-2 w-full"
-                  >
-                    Pesquisas
-                  </Button>
-                  <Button
-                    className="uppercase bg-white border-[#ff7f00] border-2 w-full"
-                  >
-                    Discussões
-                  </Button>
+                  <List />
                 </div>
 
                 {
@@ -91,16 +71,18 @@ export default function Index() {
               </div>
 
               <div
-                className="flex flex-col gap-8 p-4 rounded-3xl border-[#ff7f00] border-2 w-[50%] bg-opacity-60"
+                className="flex flex-col gap-8 p-4 rounded-3xl border-[#ff7f00] border-2 w-[50%] bg-opacity-60 relative"
                 style={{
-                  backgroundImage: `url(${(selectedArticle?.image && selectedArticle?.image) || ""})`
+                  backgroundImage: `url(${(selectedArticle?.image && selectedArticle?.image) || ""})`,
+                  backgroundSize: "cover",
                 }}
               >
-                <div className="flex flex-col justify-center items-center p-4 rounded-xl gap-2 bg-gray-500/25">
+                <div className="absolute inset-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-3xl"></div>
+                <div className="flex flex-col justify-center items-center p-4 rounded-xl gap-2 bg-gray-500/25 z-10">
                   <p className="font-bold text-3xl text-center">{selectedArticle?.title}</p>
                   <p className="font-bold text-2xl">{selectedArticle?.author.name}</p>
                 </div>
-                <div id="articles" className="flex flex-row p-4 rounded-xl gap-2 h-full bg-gray-500/25">
+                <div id="articles" className="flex flex-row p-4 rounded-xl gap-2 h-full bg-gray-500/25 z-10">
                   <div className="w-11/12">
                     <p className="font-bold text-2xl">
                       {selectedArticle?.resume}

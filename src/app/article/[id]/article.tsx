@@ -25,9 +25,9 @@ export const Article = ({ articleId }: Props) => {
   return (
     <div className="flex flex-row gap-4">
       <div className="flex flex-col items-center gap-2 w-[20%]">
-        <Image src={data?.image || siteConfig.emptyImage} alt="Foto" height={300} />
+        <Image src={data?.image || siteConfig.emptyImage} alt="Foto" height={300} width={500} />
         <Rating
-          precision={0.25}
+          precision={0.5}
           value={media}
           readOnly
           sx={{
