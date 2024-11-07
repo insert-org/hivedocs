@@ -166,8 +166,10 @@ export const Authors = () => {
                   <Button
                     isIconOnly
                     onPress={() => {
-                      onOpen()
                       setSelectedAuthor(author)
+                      setValue("name", author.name)
+                      setValue("resume", author.resume)
+                      onOpen()
                     }}
                   >
                     <Edit />
