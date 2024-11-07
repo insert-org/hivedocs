@@ -15,6 +15,7 @@ async function main() {
         name: "Admin",
         email: "admin@hivedocs.com",
         password: hashedPassword,
+        role: "Admin",
       }
     })
 
@@ -29,7 +30,7 @@ async function main() {
         const author = await prisma.author.create({
           data: {
             name: faker.person.fullName(),
-            image: faker.image.url(),
+            image: faker.image.avatar(),
             approved: true,
             resume: faker.lorem.paragraph(),
           }
@@ -58,7 +59,7 @@ async function main() {
             name: faker.person.fullName(),
             email: faker.internet.email(),
             password: hashedPassword,
-            image: faker.image.url(),
+            image: faker.image.avatar(),
           }
         })
 
