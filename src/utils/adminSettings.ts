@@ -1,5 +1,6 @@
 import { Articles } from "@/app/admin/articles";
 import { Authors } from "@/app/admin/authors";
+import { Report } from "@/app/admin/report";
 
 export type AdminSettingsType = {
   name: string;
@@ -14,5 +15,9 @@ export const adminSettings: AdminSettingsType[] = [
   {
     name: "Artigos",
     component: Articles
+  },
+  {
+    name: "Relatório",
+    component: Report
   }
 ]
