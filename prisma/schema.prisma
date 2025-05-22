@@ -56,21 +56,22 @@ model VerificationToken {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?
   password      String?
   emailVerified DateTime?
   image         String?
   imageId       String?
-  role          Role      @default(User)
+  role          Role           @default(User)
   //
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   //
   accounts      Account[]
   sessions      Session[]
   reviews       Review[]
+  ReviewAnswer  ReviewAnswer[]
 }
 
 model Author {
@@ -110,19 +111,36 @@ model Article {
 }
 
 model Review {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  //
+  content      String         @db.String
+  rating       Float
+  //
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  //
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String         @db.ObjectId
+  //
+  article      Article        @relation(fields: [articleId], references: [id])
+  articleId    String         @db.ObjectId
+  //
+  ReviewAnswer ReviewAnswer[]
+}
+
+model ReviewAnswer {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   //
   content   String   @db.String
-  rating    Float
   //
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   //
+  review    Review   @relation(fields: [reviewId], references: [id])
+  reviewId  String   @db.ObjectId
+  //
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @db.ObjectId
-  //
-  article   Article  @relation(fields: [articleId], references: [id])
-  articleId String   @db.ObjectId
 }
 
 model Notification {
