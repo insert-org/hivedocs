@@ -185,19 +185,23 @@ export const Reviews = ({ articleId, userId }: Props) => {
                         </Button>
                       )
                     }
-                    <Button
-                      isIconOnly
-                      className={`${isReplying === review.id ? "bg-[#ff7f00]" : ""}`}
-                      onClick={() => {
-                        if (isReplying === review.id) {
-                          setIsReplying(false)
-                        } else {
-                          setIsReplying(review.id)
-                        }
-                      }}
-                    >
-                      <Reply />
-                    </Button>
+                    {
+                      session?.user && (
+                        <Button
+                          isIconOnly
+                          className={`${isReplying === review.id ? "bg-[#ff7f00]" : ""}`}
+                          onClick={() => {
+                            if (isReplying === review.id) {
+                              setIsReplying(false)
+                            } else {
+                              setIsReplying(review.id)
+                            }
+                          }}
+                        >
+                          <Reply />
+                        </Button>
+                      )
+                    }
                   </div>
                   <Rating
                     precision={0.5}
