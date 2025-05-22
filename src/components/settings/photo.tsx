@@ -46,7 +46,7 @@ export const Photo = () => {
 
   return (
     <>
-      <Button className="w-full" onPress={onOpen}>Mudar foto de perfil</Button>
+      <Button className="px-8 py-4 rounded-3xl w-full bg-white text-[#ff7f00] border-[#ff7f00] border-2" onPress={onOpen}>Mudar foto de perfil</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

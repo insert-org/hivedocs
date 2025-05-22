@@ -69,29 +69,14 @@ export default function () {
   }
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-screen py-8">
-      <div className="bg-[#ff7f00] w-[90%] h-[16px]"></div>
+    <div className="flex flex-col items-center justify-center gap-8 w-full h-full">
       <div className="flex flex-col gap-4 w-6/12">
         <div className="flex flex-col justify-center items-center gap-2">
           <Image src="/logo.png" alt="Logo" width="64" height="64" />
           <p className="text-[#ff7f00] text-lg font-extrabold">Entrar no HIVE PROJECT</p>
         </div>
         <div className="bg-[#272626] flex flex-col gap-4 rounded-[5rem] px-16 py-12">
-          <Button
-            onClick={() => handleLogin("google")}
-            className="flex flex-row gap-2"
-          >
-            <img src="/assets/google.svg" alt="Google" width="24" height="24" />
-            <p>Continuar com Google</p>
-          </Button>
-          <Button
-            onClick={() => handleLogin("osu")}
-            className="flex flex-row gap-2"
-          >
-            <img src="/assets/osu.svg" alt="Google" width="24" height="24" />
-            <p>Continuar com osu!</p>
-          </Button>
-          <div className="bg-[#ff7f00] w-full h-[2px]"></div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
               <Input {...register("email")} type="email" label="Email" classNames={{ inputWrapper: "rounded-2xl" }} />
@@ -104,6 +89,21 @@ export default function () {
               >
                 {isSubmitting ? <Loader /> : "Entrar"}
               </Button>
+              <Button
+                onClick={() => handleLogin("google")}
+                className="flex flex-row gap-2"
+              >
+                <img src="/assets/google.svg" alt="Google" width="24" height="24" />
+                <p>Continuar com Google</p>
+              </Button>
+              <Button
+                onClick={() => handleLogin("osu")}
+                className="flex flex-row gap-2"
+              >
+                <img src="/assets/osu.svg" alt="Google" width="24" height="24" />
+                <p>Continuar com osu!</p>
+              </Button>
+              <div className="bg-[#ff7f00] w-full h-[2px]"></div>
               <Link href="/login/register" className="text-center text-white">
                 Criar conta
               </Link>
@@ -114,7 +114,6 @@ export default function () {
           </form>
         </div>
       </div>
-      <div className="bg-[#ff7f00] w-[90%] h-[16px]"></div>
     </div>
   )
 }

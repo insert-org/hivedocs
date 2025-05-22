@@ -83,14 +83,6 @@ export const Reviews = ({ articleId, userId }: Props) => {
               <div className="flex flex-col gap-2 w-full">
                 <div className="flex flex-row items-center gap-2">
                   <p className={`font-bold text-xl`}>{review?.user.name}</p>
-                  <Rating
-                    precision={0.5}
-                    value={review.rating}
-                    readOnly
-                    sx={{
-                      fontSize: "1.3rem",
-                    }}
-                  />
                   {
                     session?.user.role === "Admin" && (
                       <Button
@@ -105,6 +97,14 @@ export const Reviews = ({ articleId, userId }: Props) => {
                     )
                   }
                 </div>
+                <Rating
+                  precision={0.5}
+                  value={review.rating}
+                  readOnly
+                  sx={{
+                    fontSize: "1.3rem",
+                  }}
+                />
                 {
                   review.content && (
                     <Textarea

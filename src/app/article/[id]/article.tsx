@@ -26,16 +26,8 @@ export const Article = ({ articleId }: Props) => {
     <div className="flex flex-row gap-4">
       <div className="flex flex-col items-center gap-2 w-[20%]">
         <Image src={data?.image || siteConfig.emptyImage} alt="Foto" height={300} width={500} />
-        <Rating
-          precision={0.5}
-          value={media}
-          readOnly
-          sx={{
-            fontSize: "3rem",
-          }}
-        />
-        <Link href={`https://scholar.google.com.br/scholar?hl=pt-BR&q=${data?.title}`} target="_blank" isBlock showAnchorIcon color="primary">
-          Google Acadêmico
+        <Link href={data?.url || ""} target="_blank" isBlock showAnchorIcon color="primary">
+          Artigo
         </Link>
       </div>
       <div className="flex flex-col gap-2 w-full">
@@ -45,6 +37,15 @@ export const Article = ({ articleId }: Props) => {
           <p className="text-gray-500">{data?.author.name}</p>
         </div>
         <p>{data?.resume}</p>
+
+        <Rating
+          precision={0.5}
+          value={media}
+          readOnly
+          sx={{
+            fontSize: "3rem",
+          }}
+        />
       </div>
     </div>
   )

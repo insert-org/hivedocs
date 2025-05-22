@@ -1,38 +1,45 @@
-"use server"
+"use server";
 
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/lib/prisma";
 
 export const getAuthors = async () => {
   const authors = await prisma.author.findMany({
     where: {
-      approved: true
-    }
-  })
+      approved: true,
+    },
+  });
 
-  return authors
-}
+  return authors;
+};
 
-export const createArticle = async (data: { title: string, authorName: string, year: number, resume: string }) => {
+export const createArticle = async (data: {
+  title: string;
+  authorName: string;
+  year: number;
+  resume: string;
+  url: string;
+}) => {
   const article = await prisma.article.create({
     data: {
       title: data.title,
       year: data.year,
       resume: data.resume,
+      url: data.url,
       author: {
         connectOrCreate: {
           where: {
-            name: data.authorName
+            name: data.authorName,
           },
           create: {
-            name: data.authorName
-          }
-        }
-      }
+            name: data.authorName,
+          },
+        },
+      },
     },
     include: {
-      author: true
-    }
-  })
+      author: true,
+    },
+  });
 
-  return article
-}
+  return article;
+};

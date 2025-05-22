@@ -64,8 +64,7 @@ export default function () {
   }
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-screen py-16">
-      <div className="bg-[#ff7f00] w-[90%] h-[16px]"></div>
+    <div className="flex flex-col items-center justify-center gap-8 w-full h-full">
       <div className="flex flex-col gap-4 w-6/12">
         <div className="flex flex-col justify-center items-center gap-2">
           <Image src="/logo.png" alt="Logo" width="64" height="64" />
@@ -91,7 +90,6 @@ export default function () {
           </form>
         </div>
       </div>
-      <div className="bg-[#ff7f00] w-[90%] h-[16px]"></div>
     </div>
   )
 }

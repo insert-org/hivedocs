@@ -35,6 +35,7 @@ export const NewArticleForm = () => {
       authorName: "",
       year: 0,
       resume: "",
+      url: ""
     }
   });
 
@@ -106,6 +107,7 @@ export const NewArticleForm = () => {
         />
         {errors.authorName && <p className="text-red-500 text-sm">{errors.authorName.message}</p>}
         <Input type="number" label="Ano" {...register("year", { valueAsNumber: true })} />
+        <Input type="text" label="URL" {...register("url")} />
         <Textarea
           label="Resumo"
           {...register("resume")}

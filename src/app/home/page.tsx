@@ -27,100 +27,94 @@ export default function Index() {
   if (error) return <p>{error.message}</p>
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-screen p-16">
-      <div className="bg-[#ff7f00] w-full h-[16px]"></div>
-      <div className="flex flex-col items-center gap-8 w-full h-full py-8">
-        <Header />
-        {
-          isLoading ? (
-            <Loader2 className="animate-spin" size={64} />
-          ) : (
+    <div className="flex flex-col items-center gap-8 w-full h-full py-8">
+      {
+        isLoading ? (
+          <Loader2 className="animate-spin" size={64} />
+        ) : (
 
-            <div className="flex flex-row gap-4 h-full w-full">
-              <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%] h-full overflow-scroll">
-                <div className="flex flex-row justify-between rounded-full border-[#ff7f00] border-2 p-1">
-                  <Search />
-                  <List />
-                </div>
-
-                {
-                  data?.map((article, index) => {
-                    const isSelected = selectedArticle?.id === article.id
-
-                    return (
-                      <Button
-                        key={index}
-                        className={`flex flex-row justify-start items-center ${isSelected ? 'bg-[#ff7f00]' : 'bg-white'} gap-4 border-[#ff7f00] border-2 rounded-xl px-4 py-12`}
-                        onClick={() => setSelectedArticle(article)}
-                      >
-                        <div>
-                          <Avatar className="transition-transform w-16 h-16" src={article.image || siteConfig.emptyImage} />
-                        </div>
-                        <div className="flex flex-col items-start gap-2">
-                          <p className="font-bold">
-                            {article.title}
-                          </p>
-                          <p className="text-sm">
-                            {article.author.name}
-                          </p>
-                        </div>
-                      </Button>
-                    )
-                  })
-                }
+          <div className="flex flex-row gap-4 h-full w-full">
+            <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%] h-full overflow-scroll">
+              <div className="flex flex-row justify-between rounded-full border-[#ff7f00] border-2 p-1">
+                <List />
+                <Search />
               </div>
 
-              <div
-                className="flex flex-col gap-8 p-4 rounded-3xl border-[#ff7f00] border-2 w-[50%] bg-opacity-60 relative"
-                style={{
-                  backgroundImage: `url(${(selectedArticle?.image && selectedArticle?.image) || ""})`,
-                  backgroundSize: "cover",
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-3xl"></div>
-                <div className="flex flex-col justify-center items-center p-4 rounded-xl gap-2 bg-gray-500/25 z-10">
-                  <p className="font-bold text-3xl text-center">{selectedArticle?.title}</p>
-                  <p className="font-bold text-2xl">{selectedArticle?.author.name}</p>
-                </div>
-                <div id="articles" className="flex flex-row p-4 rounded-xl gap-2 h-full bg-gray-500/25 z-10">
-                  <div className="w-11/12">
-                    <p className="font-bold text-2xl">
-                      {selectedArticle?.resume}
-                    </p>
-                  </div>
-                  <div className="w-1/12">
-                    <Link
-                      href={`/article/${selectedArticle?.id}`}
-                      className="flex flex-row justify-center items-center rounded-3xl p-4 text-black bg-white border-[#ff7f00] border-2 w-full"
+              {
+                data?.map((article, index) => {
+                  const isSelected = selectedArticle?.id === article.id
+
+                  return (
+                    <Button
+                      key={index}
+                      className={`flex flex-row justify-start items-center ${isSelected ? 'bg-[#ff7f00] text-white' : 'bg-white'} gap-4 border-[#ff7f00] border-2 rounded-xl px-4 py-12`}
+                      onClick={() => setSelectedArticle(article)}
                     >
-                      <ArrowRight />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%]">
-                <p className="font-bold text-3xl left-2 top-2 z-10">Sobre o autor</p>
-                {
-                  selectedArticle?.author.image && (
-                    <Image
-                      src={selectedArticle?.author.image}
-                      alt="Professor"
-                      classNames={{
-                        img: "object-fill w-[50vw] h-[30vh]"
-                      }}
-                    />
+                      <div>
+                        <Avatar className="transition-transform w-16 h-16" src={article.image || siteConfig.emptyImage} />
+                      </div>
+                      <div className="flex flex-col items-start gap-2">
+                        <p className="font-bold">
+                          {article.title}
+                        </p>
+                        <p className="text-sm">
+                          {article.author.name}
+                        </p>
+                      </div>
+                    </Button>
                   )
-                }
-                <p>
-                  {selectedArticle?.author.resume}
-                </p>
+                })
+              }
+            </div>
+
+            <div
+              className="flex flex-col gap-8 p-4 rounded-3xl border-[#ff7f00] border-2 w-[50%] bg-opacity-60 relative"
+              style={{
+                backgroundImage: `url(${(selectedArticle?.image && selectedArticle?.image) || ""})`,
+                backgroundSize: "cover",
+              }}
+            >
+              <div className="absolute inset-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-3xl"></div>
+              <div className="flex flex-col justify-center items-center p-4 rounded-xl gap-2 bg-gray-500/25 z-10">
+                <p className="font-bold text-3xl text-center">{selectedArticle?.title}</p>
+                <p className="font-bold text-2xl">{selectedArticle?.author.name}</p>
+              </div>
+              <div id="articles" className="flex flex-row p-4 rounded-xl gap-2 h-full bg-gray-500/25 z-10">
+                <div className="w-11/12">
+                  <p className="font-bold text-2xl">
+                    {selectedArticle?.resume}
+                  </p>
+                </div>
+                <div className="w-2/12">
+                  <Link
+                    href={`/article/${selectedArticle?.id}`}
+                    className="flex flex-row justify-center items-center rounded-3xl p-4 text-white bg-[#ff7f00] border-[#ff7f00] border-2 w-full"
+                  >
+                    Ver mais
+                  </Link>
+                </div>
               </div>
             </div>
-          )
-        }
-      </div>
-      <div className="bg-[#ff7f00] w-full h-[16px]"></div>
+
+            <div id="articles" className="flex flex-col gap-2 p-4 rounded-3xl border-[#ff7f00] border-2 w-[25%]">
+              <p>
+                {selectedArticle?.author.resume}
+              </p>
+              {
+                selectedArticle?.author.image && (
+                  <Image
+                    src={selectedArticle?.author.image}
+                    alt="Professor"
+                    classNames={{
+                      img: "object-fill w-[50vw] h-[30vh]"
+                    }}
+                  />
+                )
+              }
+            </div>
+          </div>
+        )
+      }
     </div>
   )
 }

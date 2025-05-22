@@ -1,12 +1,15 @@
 "use client"
 
+import { getNotifications } from "@/app/admin/actions"
 import { auth } from "@/auth"
 import { AccountDropdown } from "@/components/account-dropdown"
 import { Button } from "@nextui-org/button"
 import { Image, Input, Link } from "@nextui-org/react"
+import { useQuery } from "@tanstack/react-query"
 import { Bell, Home, Plus, Search } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useRouter } from 'nextjs-toploader/app';
+import { NotificationsDropdown } from "./notifications-dropdown"
 
 export const Header = () => {
   const { data: session } = useSession()
@@ -40,12 +43,7 @@ export const Header = () => {
         >
           <Plus size={24} color="white" />
         </Button>
-        <Button
-          className="rounded-full bg-black"
-          isIconOnly
-        >
-          <Bell size={24} color="white" />
-        </Button>
+        <NotificationsDropdown />
         {
           session?.user ? (
             <AccountDropdown />

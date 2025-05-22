@@ -46,7 +46,7 @@ export const AccountDropdown = () => {
           Configurações
         </DropdownItem>
         <DropdownItem key="logout" color="danger" onClick={() => logout()}>
-          Sair
+          <p className="text-red-500">Sair</p>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

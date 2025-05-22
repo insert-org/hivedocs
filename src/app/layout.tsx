@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import NextTopLoader from 'nextjs-toploader';
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: {
@@ -27,7 +28,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <Providers>
           <NextTopLoader color="#ff7f00" />
-          <main className="text-foreground bg-background min-h-screen flex flex-col justify-center items-center">
+          <main className="text-foreground bg-background h-screen flex flex-col p-16">
+            <Header />
             {children}
           </main>
         </Providers>
