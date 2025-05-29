@@ -1,6 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header";
 import { Settings, settings } from "@/utils/settings";
 import { Button } from "@nextui-org/button";
 import { ArrowLeft } from "lucide-react";

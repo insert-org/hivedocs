@@ -1,17 +1,17 @@
-import { Authors } from "@/app/admin/authors"
+import { Authors } from "@/app/admin/authors";
 import { Name } from "@/components/settings/name";
 import { Photo } from "@/components/settings/photo";
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 type Setting = {
-  label: string
+  label: string;
   component: () => JSX.Element;
-}
+};
 
 export type Settings = {
-  name: string
-  settings: Setting[]
-}
+  name: string;
+  settings: Setting[];
+};
 
 export const settings: Settings[] = [
   {
@@ -19,42 +19,12 @@ export const settings: Settings[] = [
     settings: [
       {
         label: "Nome",
-        component: Name
+        component: Name,
       },
       {
         label: "Foto",
-        component: Photo
-      }
-    ]
+        component: Photo,
+      },
+    ],
   },
-  {
-    name: "Preferências",
-    settings: [
-    ]
-  },
-  {
-    name: "Pesquisa",
-    settings: [
-    ]
-  },
-  {
-    name: "Feedback",
-    settings: [
-    ]
-  },
-  {
-    name: "Privacidade",
-    settings: [
-    ]
-  },
-  {
-    name: "Ajuda",
-    settings: [
-    ]
-  },
-  {
-    name: "Sobre",
-    settings: [
-    ]
-  }
-]
+];

@@ -1,7 +1,6 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { Header } from "@/components/header"
 import { useSession } from "next-auth/react"
 import { Button } from "@nextui-org/button"
 import { useState } from "react"

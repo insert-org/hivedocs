@@ -1,7 +1,6 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { Header } from "@/components/header"
 import { Article } from "./article"
 import { Reviews } from "./reviews"
 import { UserReview } from "./userReview"

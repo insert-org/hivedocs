@@ -1,6 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header"
 import { Button } from "@nextui-org/button"
 import { useRouter } from "nextjs-toploader/app"
 
