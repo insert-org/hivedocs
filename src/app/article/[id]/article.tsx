@@ -23,8 +23,8 @@ export const Article = ({ articleId }: Props) => {
   if (status === "error") return <p>Artigo não encontrado</p>
 
   return (
-    <div className="flex flex-row gap-4">
-      <div className="flex flex-col items-center gap-2 w-[20%]">
+    <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col items-center gap-2 sm:w-[20%]">
         <Image src={data?.image || siteConfig.emptyImage} alt="Foto" height={300} width={500} />
         <Rating
           precision={0.5}
@@ -39,7 +39,7 @@ export const Article = ({ articleId }: Props) => {
         </Link>
       </div>
       <div className="flex flex-col gap-2 w-full">
-        <div className="flex flex-row items-end gap-2">
+        <div className="flex flex-col sm:flex-row items-end gap-2">
           <p className="font-bold text-3xl">{data?.title}</p>
           <p className="text-gray-500">{data?.year}</p>
           <p className="text-gray-500">{data?.author.name}</p>

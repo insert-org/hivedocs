@@ -70,7 +70,7 @@ export default function () {
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 w-full h-full">
-      <div className="flex flex-col gap-4 w-6/12">
+      <div className="flex flex-col gap-4 sm:w-6/12">
         <div className="flex flex-col justify-center items-center gap-2">
           <Image src="/logo.png" alt="Logo" width="64" height="64" />
           <p className="text-[#ff7f00] text-lg font-extrabold">Entrar no HIVE PROJECT</p>

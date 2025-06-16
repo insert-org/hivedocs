@@ -45,7 +45,7 @@ export const Header = () => {
 
   return (
     <div className="flex flex-row justify-between items-center w-full">
-      <Image src="/logo2.png" alt="logo" className="h-16 cursor-pointer" onClick={() => router.push("/")} />
+      <Image src="/logo2.png" alt="logo" className="h-16 cursor-pointer hidden sm:block" onClick={() => router.push("/")} />
       <div className="flex flex-row gap-4 w-[50%]">
         <Button
           className="rounded-full bg-black"
@@ -58,7 +58,7 @@ export const Header = () => {
           cacheOptions
           loadOptions={promiseOptions}
           defaultOptions
-          className="w-full"
+          className="w-full hidden sm:block"
           placeholder="Pesquisar"
           noOptionsMessage={() => "Pesquise por algum artigo."}
           loadingMessage={() => "Carregando..."}
